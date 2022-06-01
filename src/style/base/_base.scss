@@ -1,0 +1,38 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    font-family: "Poppins";
+    background-image: url("../../assets/images/white-concrete-wall.jpg");
+}
+
+.container{
+    width: 1200px;
+    margin: 0 auto;
+
+    @media screen and (max-width: 1440px) {
+        width: 90%;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+button{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
