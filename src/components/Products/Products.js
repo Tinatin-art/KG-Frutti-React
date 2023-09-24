@@ -16,14 +16,18 @@ function Cards() {
 
 
     const products = useSelector(state => {
-        if(state.filters.activeFilter === 'all'){
-            return state.products.products;
-        }else {
-            return state.products.products.filter(item => item.element === state.filters.activeFilter)
-        }
+        // if(state.filters.activeFilter === 'all'){
+        //     return state.products.products;
+        // }else {
+        //     return state.products.products.filter(item => item.element === state.filters.activeFilter)
+        // }
+
+        return state.products.products;
     
         
     })
+
+    console.log(products)
 
 
     return  (

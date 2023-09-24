@@ -18,7 +18,7 @@ const MainPage = () => {
                             {/* <FiltersByPrice/> */}
                         </div>
                         <div className="main__right">
-                            <Filters/>
+                            {/* <Filters/> */}
                             <ProductCards/>
                         </div>
                     </main>

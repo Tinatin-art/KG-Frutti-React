@@ -11,7 +11,7 @@ import axiosInstance from "../api/axiosInstance";
 export function getFilters() { 
 	return (dispatch) => {
 		dispatch(getFiltersRequest());
-		axiosInstance().get("filters/")
+		axiosInstance().get("/filters")
 			.then((response) => {
 				dispatch(getFiltersSuccess(response.data));
 			})

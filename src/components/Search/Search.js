@@ -22,7 +22,7 @@ const Search = () => {
         }
     
         setText(keyword);
-        };
+    };
 
     const navigate = useNavigate()
     const getId = (id) => {

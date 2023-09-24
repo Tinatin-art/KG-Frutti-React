@@ -1,39 +1,44 @@
 import axios from "axios";
 
-const name = () => {
-    let headers = {
-        "X-Custom-Header": "foobar",
-        "Access-Control-Allow-Origin": true,
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:5000/api/',
+    headers: {
         "Content-Type": "application/json",
-    };
+    }
+});
 
-    const axiosInstance = axios.create({
-        baseURL: 'http://localhost:3001/',
-        timeout: 0,
-        headers
-    });
+axiosInstance.interceptors.request.use(
+    config => {
 
-    // axiosInstance.interceptors.response.use(
-	// 	(response) =>
-	// 		new Promise((resolve) => {
-	// 			resolve(response);
-	// 		}),
-	// 	(error => {
-	// 		if (!error.response) {
-	// 			return new Promise((resolve, reject) => {
-	// 				reject(error);
-	// 		});
-	// 	}
+        if (!config?.headers) {
+            throw new Error(`Expected 'config' and 'config.headers' not to be undefined`);
+        }
+    
+        config.headers['Authorization'] = `Bearer ${localStorage.getItem('token')}`
+        return config;
+    }
+);
 
-			
-	//     })
-    // );
+axiosInstance.interceptors.response.use(
+    (res) => {
+      return res;
+    },
+    async (err) => {
+        const originalConfig = err.config;
 
-    return axiosInstance;
-};
+        if (err.response.status === 401  && err.config && !originalConfig._retry) {
+            originalConfig._retry = true;
+            try {
+                const response = await axiosInstance.get("refresh", {withCredentials: true});
+                localStorage.setItem('token', response.data.accessToken);
+                return instance.request(originalConfig);
+            } catch (_error) {
+                console.log("Unauthorized");
+            }
+        }
 
-export default name;
+        throw err;
+    }
+);
 
-   
-
-
+export default axiosInstance;

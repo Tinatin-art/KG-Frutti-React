@@ -1,43 +1,41 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
+import React, {useState} from 'react'
+import {useDispatch} from "react-redux";
+import { signIn } from '../../auth/store/SignInSlice';
+import {useNavigate} from "react-router-dom";
+
 
 const AuthForm = () => {
 
-    const { register, handleSubmit} = useForm({
-        shouldUseNativeValidation: true,
-        defaultValues: {
-            firstName: '',
-            lastName: '',
-            email: '',
-            password: ''
-        }
-    });
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const [email, setEmail] = useState('iau@live.ru');
+    const [password, setPassword] = useState('iau123');
 
-    const onSubmit = (data) => {
-        console.log(JSON.stringify(data));
-    };
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        dispatch(signIn({email, password, navigate}))
+    }
+
 
     return (
         <>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
-                    <label>First Name</label>
-                    <input className='input'{...register("firstName", { required: true })} type="text"
-                    />
-                </div>
-                <div>
-                    <label>Laste Name</label>
-                    <input className='input' {...register("lastName", { minLength: 2 })} type="text"
-                    />
-                </div>
+            <form onSubmit={handleSubmit} >
                 <div>
                     <label>Email</label>
-                    <input className='input' {...register("email", { required: true })} type="text"
+                    <input 
+                        onChange={e => setEmail(e.target.value)}
+                        value={email}
+                        className='input' 
+                        type="text"
                     />
                 </div>
                 <div>
                     <label>Password</label>
-                    <input className='input' {...register("password", { required: true })} type="password"
+                    <input 
+                        onChange={e => setPassword(e.target.value)}
+                        value={password}
+                        className='input' 
+                        type="password"
                     />
                 </div>
                 <button type="submit">Log in</button>

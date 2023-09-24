@@ -22,8 +22,9 @@ import axiosInstance from "../api/axiosInstance";
 export function getProducts() { 
 	return (dispatch) => {
 		dispatch(getProductsRequest());
-		axiosInstance().get("fruits/")
+		axiosInstance.get("fruits")
 			.then((response) => {
+				console.log(response)
 				dispatch(getProductsSuccess(response.data));
 			})
 			.catch((error) => {
@@ -35,7 +36,7 @@ export function getProducts() {
 export function getOneProducts(id) { 
 	return (dispatch) => {
 		dispatch(getOneProductsRequest());
-		axiosInstance().get(`fruits/${id}`)
+		axiosInstance.get(`fruits/${id}`)
 			.then((response) => {
 				dispatch(getOneProductsSuccess(response.data));
 			})
@@ -48,7 +49,7 @@ export function getOneProducts(id) {
 export function getProductRecommend() { 
 	return (dispatch) => {
 		dispatch(getProductRecommendRequest());
-		axiosInstance().get(`fruitsRecommend/`)
+		axiosInstance.get(`fruitsRecommend`)
 			.then((response) => {
 				dispatch(getProductRecommendSuccess(response.data));
 			})
@@ -61,7 +62,7 @@ export function getProductRecommend() {
 export function updateRate(newRate ,id) { 
 	return (dispatch) => {
 		dispatch(updateRateRequest());
-		axiosInstance().patch(`fruits/${id}`, JSON.stringify(newRate))
+		axiosInstance.patch(`fruits/${id}`, JSON.stringify(newRate))
 			.then((response) => {
 				dispatch(updateRateSuccess(response.data));
 			})

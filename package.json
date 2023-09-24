@@ -2,16 +2,16 @@
   "name": "frutti-react-project",
   "version": "0.1.0",
   "private": true,
+  "main": "/client/src/index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "@trendyol-js/react-carousel": "^2.0.1",
     "axios": "^0.25.0",
     "bootstrap": "^5.1.3",
-    "concurrently": "^7.1.0",
-    "node-sass": "^4.14.1",
+    "concurrently": "^7.4.0",
+    "node-sass": "^7.0.3",
     "react": "^17.0.2",
     "react-bootstrap": "^2.3.1",
     "react-dom": "^17.0.2",
@@ -20,7 +20,7 @@
     "react-native-snap-carousel": "^3.9.1",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^5.0.1",
     "react-simply-carousel": "^5.1.4",
     "react-swiper": "^0.1.5",
     "redux": "^4.1.2",
@@ -31,24 +31,14 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "concurrently \"react-scripts start\" \"npx json-server --watch db.json --port 3001\"",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "plugins": [
     "react-hooks"
   ],
-  "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn"
-  },
   "browserslist": {
     "production": [
       ">0.2%",
